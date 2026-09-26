@@ -1,0 +1,90 @@
+<view class="container">
+  <view class="card">
+    <view class="med-name">{{medInfo.med_name}}</view>
+    <view class="info-row">
+      <text class="label">{{texts.dosageLabel}}</text>
+      <text class="value">{{medInfo.dosage}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">{{texts.frequencyLabel}}</text>
+      <text class="value">{{medInfo.frequency || 1}}{{texts.frequencySuffix}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">{{texts.cycleLabel}}</text>
+      <text class="value">{{cycleText}}</text>
+    </view>
+    <view class="info-row">
+      <text class="label">{{texts.timeLabel}}</text>
+      <text class="value">{{timeSlotsStr}}</text>
+    </view>
+    <view class="info-row" wx:if="{{medInfo.notes}}">
+      <text class="label">{{texts.notesLabel}}</text>
+      <text class="value">{{medInfo.notes}}</text>
+    </view>
+  </view>
+
+  <view class="records-section">
+    <text class="section-title">{{texts.todayRecordTitle}}</text>
+
+    <view class="empty-card" wx:if="{{todayRecords.length === 0}}">
+      <text class="empty-text">{{texts.noNeedToday}}</text>
+    </view>
+
+    <view class="record-list" wx:else>
+      <block wx:for="{{todayRecords}}" wx:key="time_slot">
+        <view class="record-item status-{{item.status}}">
+          <view class="record-left">
+            <text class="record-time">{{item.scheduled_time}}</text>
+            <text class="record-label">{{texts.timePrefix}}{{item.time_slot + 1}}{{texts.frequencySuffix}}</text>
+          </view>
+          <view class="record-right">
+            <view wx:if="{{item.status === 'pending'}}" class="pending-tag">
+              <text>{{texts.pending}}</text>
+            </view>
+            <view wx:elif="{{item.status === 'taken'}}" class="taken-tag">
+              <icon type="success" size="14" color="#07C160"></icon>
+              <text>{{item.taken_time}}</text>
+            </view>
+            <view wx:elif="{{item.status === 'missed'}}" class="missed-tag">
+              <text>{{texts.missed}}</text>
+            </view>
+            <view wx:elif="{{item.status === 'supplement'}}" class="supplement-tag">
+              <text>{{texts.supplementPrefix}} {{item.supplement_time}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="action-buttons">
+      <button wx:if="{{todayRecords.length > 0 && canTakeNow}}" class="take-btn" bindtap="onTakeNow">
+        <text>{{texts.takeNow}}</text>
+      </button>
+      <button wx:if="{{todayRecords.length > 0 && hasMissed}}" class="supplement-btn" bindtap="onSupplementSelect">
+        <text>{{texts.supplementMissed}}</text>
+      </button>
+      <button class="delete-btn-detail" bindtap="onDeletePlan">
+        <text>{{texts.deletePlan}}</text>
+      </button>
+    </view>
+  </view>
+</view>
+
+<view class="modal-mask" wx:if="{{showSupplementModal}}" bindtap="closeSupplementModal">
+  <view class="modal-content" catchtap="">
+    <view class="modal-header">
+      <text class="modal-title">{{texts.selectSupplementRecord}}</text>
+    </view>
+    <view class="modal-body">
+      <block wx:for="{{missedRecords}}" wx:key="time_slot">
+        <view class="supplement-item" bindtap="doSupplement" data-item="{{item}}">
+          <text class="supplement-time">{{item.scheduled_time}}</text>
+          <text class="supplement-name">{{medInfo.med_name}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="modal-footer">
+      <text class="modal-cancel" bindtap="closeSupplementModal">{{texts.cancel}}</text>
+    </view>
+  </view>
+</view>

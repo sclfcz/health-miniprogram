@@ -1,0 +1,64 @@
+<view class="container">
+  <view class="form-section">
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">亲属关系</text>
+        <text class="required">*</text>
+      </view>
+      <picker mode="selector" range="{{['配偶', '子女', '父母', '兄弟姐妹', '其他']}}" bindchange="onRelationPick">
+        <view class="picker-value">
+          <text class="{{relation ? '' : 'placeholder'}}">{{relation || '请选择亲属关系'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">家属姓名</text>
+        <text class="required">*</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="请输入家属姓名" 
+        value="{{familyName}}"
+        bindinput="onFamilyNameInput"
+        maxlength="20"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">电话号码</text>
+        <text class="required">*</text>
+      </view>
+      <input 
+        class="form-input" 
+        type="number"
+        placeholder="请输入电话号码" 
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+        maxlength="11"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">备注信息</text>
+        <text class="optional">（选填）</text>
+      </view>
+      <textarea 
+        class="form-textarea" 
+        placeholder="请输入备注信息" 
+        value="{{notes}}"
+        bindinput="onNotesInput"
+        maxlength="200"
+        auto-height
+      />
+    </view>
+  </view>
+
+  <view class="btn-container">
+    <button class="save-btn" bindtap="onSubmit">{{isEdit ? '保存修改' : '添加家属'}}</button>
+  </view>
+</view>

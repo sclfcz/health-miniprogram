@@ -1,0 +1,69 @@
+<view class="container">
+  <view class="card">
+    <view class="section-title">血压测量</view>
+    <view class="input-group">
+      <view class="input-item">
+        <text class="input-label">收缩压（高压）</text>
+        <view class="input-row">
+          <input class="input-field" type="digit" placeholder="请输入" value="{{systolic}}" bindinput="onSystolicInput"/>
+          <text class="unit">mmHg</text>
+        </view>
+      </view>
+      <view class="input-item">
+        <text class="input-label">舒张压（低压）</text>
+        <view class="input-row">
+          <input class="input-field" type="digit" placeholder="请输入" value="{{diastolic}}" bindinput="onDiastolicInput"/>
+          <text class="unit">mmHg</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">血糖测量</view>
+    <view class="input-group">
+      <view class="input-item">
+        <text class="input-label">血糖值</text>
+        <view class="input-row">
+          <input class="input-field" type="digit" placeholder="请输入" value="{{sugar}}" bindinput="onSugarInput"/>
+          <text class="unit">mmol/L</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">体重测量</view>
+    <view class="input-group">
+      <view class="input-item">
+        <text class="input-label">体重</text>
+        <view class="input-row">
+          <input class="input-field" type="digit" placeholder="请输入" value="{{weight}}" bindinput="onWeightInput"/>
+          <text class="unit">kg</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="section-title">测量时间</view>
+    <view class="picker-group">
+      <picker mode="date" value="{{date}}" bindchange="onDateChange">
+        <view class="picker-item">
+          <text class="picker-label">日期</text>
+          <view class="picker-value">{{date}}</view>
+        </view>
+      </picker>
+      <picker mode="time" value="{{time}}" bindchange="onTimeChange">
+        <view class="picker-item">
+          <text class="picker-label">时间</text>
+          <view class="picker-value">{{time}}</view>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="btn-container">
+    <button class="save-btn" bindtap="onSubmit">确认保存</button>
+  </view>
+</view>

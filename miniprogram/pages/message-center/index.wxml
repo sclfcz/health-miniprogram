@@ -1,0 +1,70 @@
+<view class="container">
+  <view class="header">
+    <text class="title">消息中心</text>
+    <view class="badge" wx:if="{{pendingCount > 0}}">{{pendingCount}}</view>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === 0 ? 'active' : ''}}" bindtap="onTabChange" data-tab="0">
+      待处理
+      <view class="tab-badge" wx:if="{{pendingCount > 0}}">{{pendingCount}}</view>
+    </view>
+    <view class="tab-item {{currentTab === 1 ? 'active' : ''}}" bindtap="onTabChange" data-tab="1">
+      已处理
+    </view>
+  </view>
+
+  <!-- 申请列表 -->
+  <view class="request-list">
+    <block wx:for="{{requestList}}" wx:key="_id">
+      <view class="request-card">
+        <view class="card-header">
+          <view class="avatar">
+            <text>{{item.familyName.substring(0,1)}}</text>
+          </view>
+          <view class="header-info">
+            <text class="family-name">{{item.familyName}}</text>
+            <text class="relation">{{item.relation}}</text>
+          </view>
+          <view class="status-tag status-{{item.status}}">
+            {{item.statusText}}
+          </view>
+        </view>
+        
+        <view class="card-body">
+          <view class="info-row">
+            <text class="info-label">联系电话：</text>
+            <text class="info-value">{{item.familyPhone}}</text>
+          </view>
+          <view class="info-row">
+            <text class="info-label">申请时间：</text>
+            <text class="info-value">{{item.createTimeStr}}</text>
+          </view>
+        </view>
+
+        <view class="card-footer" wx:if="{{item.status === 0}}">
+          <view class="btn-reject" bindtap="onReject" data-id="{{item._id}}" data-name="{{item.familyName}}">
+            <text>拒绝</text>
+          </view>
+          <view class="btn-approve" bindtap="onApprove" data-id="{{item._id}}" data-name="{{item.familyName}}">
+            <text>同意</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{requestList.length === 0 && !loading}}">
+      <view class="empty-icon">
+        <view class="icon-bell"></view>
+      </view>
+      <text class="empty-text">{{currentTab === 0 ? '暂无待处理的申请' : '暂无已处理的申请'}}</text>
+    </view>
+
+    <!-- 加载中 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+  </view>
+</view>

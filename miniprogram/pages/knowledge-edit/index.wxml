@@ -1,0 +1,66 @@
+<view class="container">
+  <!-- 表单 -->
+  <view class="form-section">
+    <view class="form-item">
+      <text class="form-label">标题</text>
+      <input 
+        class="form-input" 
+        placeholder="请输入文章标题" 
+        value="{{title}}"
+        bindinput="onTitleInput"
+        maxlength="50"
+      />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">分类</text>
+      <picker mode="selector" range="{{tagList}}" value="{{tagIndex}}" bindchange="onTagChange">
+        <view class="form-picker">
+          <text class="{{tag ? 'picker-value' : 'picker-placeholder'}}">{{tag || '请选择分类'}}</text>
+          <view class="picker-arrow"></view>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">发布日期</text>
+      <picker mode="date" value="{{publishDate}}" bindchange="onDateChange">
+        <view class="form-picker">
+          <text class="picker-value">{{publishDate}}</text>
+          <view class="picker-arrow"></view>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">摘要</text>
+      <textarea 
+        class="form-textarea" 
+        placeholder="请输入文章摘要（选填，用于列表展示）" 
+        value="{{summary}}"
+        bindinput="onSummaryInput"
+        maxlength="100"
+        auto-height
+      />
+      <text class="char-count">{{summary.length}}/100</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">内容详情</text>
+      <textarea 
+        class="form-textarea content-area" 
+        placeholder="请输入文章详细内容" 
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="5000"
+      />
+      <text class="char-count">{{content.length}}/5000</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="btn-group">
+    <button class="btn btn-cancel" bindtap="onCancel">取消</button>
+    <button class="btn btn-submit" bindtap="onSubmit">提交发布</button>
+  </view>
+</view>

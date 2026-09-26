@@ -1,0 +1,63 @@
+<view class="container">
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <icon type="search" size="18" color="#999"></icon>
+      <input
+        class="search-input"
+        placeholder="搜索健康百科内容"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+        confirm-type="search"
+      />
+      <icon wx:if="{{keyword}}" type="clear" size="18" color="#999" bindtap="clearSearch"></icon>
+    </view>
+  </view>
+
+  <view class="article-list" wx:if="{{articleList.length > 0}}">
+    <block wx:for="{{articleList}}" wx:key="_id">
+      <view class="article-card">
+        <image wx:if="{{item.cover_url}}" class="cover-image" src="{{item.cover_url}}" mode="aspectFill"></image>
+        <view class="article-content" bindtap="goToDetail" data-id="{{item._id}}">
+          <view class="article-header">
+            <text class="article-title">{{item.title}}</text>
+            <text class="article-tag">{{item.tag}}</text>
+          </view>
+          <text class="article-summary">{{item.summary}}</text>
+        </view>
+        <view wx:if="{{isAdmin}}" class="article-actions">
+          <view class="action-btn edit-btn" catchtap="onEdit" data-id="{{item._id}}">
+            <text>编辑</text>
+          </view>
+          <view class="action-btn delete-btn" catchtap="onDelete" data-id="{{item._id}}" data-title="{{item.title}}">
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{loading && articleList.length === 0}}" class="loading-state">
+    <text>加载中...</text>
+  </view>
+
+  <view wx:if="{{articleList.length === 0 && !loading}}" class="empty-state">
+    <view class="empty-icon">
+      <view class="icon-book"></view>
+    </view>
+    <text class="empty-text">暂无相关科普内容</text>
+    <text class="empty-hint">试试换个关键词搜索</text>
+  </view>
+
+  <view wx:if="{{loading && articleList.length > 0}}" class="load-status">
+    <text>正在加载更多...</text>
+  </view>
+
+  <view wx:if="{{!hasMore && articleList.length > 0}}" class="load-status">
+    <text>已经到底了</text>
+  </view>
+
+  <view wx:if="{{isAdmin}}" class="fab-btn" bindtap="onAdd">
+    <view class="fab-icon"></view>
+  </view>
+</view>

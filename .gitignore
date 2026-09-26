@@ -1,0 +1,16 @@
+# 依赖（云函数依赖由微信开发者工具"上传并部署：云端安装依赖"时安装）
+node_modules/
+miniprogram_npm/
+
+# 微信开发者工具私有配置（含本机设置，官方建议不入库）
+project.private.config.json
+
+# 本机敏感信息备份（AppID / 环境 ID / 模板 ID 等真实值，不要提交）
+*.local.md
+.env.local.md
+
+# 系统与编辑器
+.DS_Store
+*.log
+.idea/
+.vscode/

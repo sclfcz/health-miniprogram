@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="header">
+    <text class="title">绑定患者</text>
+    <text class="subtitle">输入患者的完整ID发起绑定申请</text>
+  </view>
+
+  <!-- 说明卡片 -->
+  <view class="info-card">
+    <view class="info-icon">
+      <text>?</text>
+    </view>
+    <view class="info-content">
+      <text class="info-title">如何获取患者ID？</text>
+      <text class="info-text">1. 让患者打开小程序</text>
+      <text class="info-text">2. 进入"我的"页面</text>
+      <text class="info-text">3. 点击"复制"按钮获取ID</text>
+      <text class="info-text">4. 将ID发送给您</text>
+    </view>
+  </view>
+
+  <view class="form-section">
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">患者ID</text>
+        <text class="required">*</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="请粘贴患者ID" 
+        value="{{patientId}}"
+        bindinput="onPatientIdInput"
+      />
+      <text class="input-hint">患者ID是一串28位的字符</text>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">亲属关系</text>
+        <text class="required">*</text>
+      </view>
+      <picker mode="selector" range="{{relationList}}" value="{{relationIndex}}" bindchange="onRelationChange">
+        <view class="picker-value">
+          <text class="{{relation ? 'has-value' : ''}}">{{relation || '请选择亲属关系'}}</text>
+          <text class="picker-arrow">›</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="btn-container">
+    <button class="submit-btn" bindtap="onSubmit" loading="{{loading}}">
+      发送绑定申请
+    </button>
+  </view>
+
+  <!-- 申请记录 -->
+  <view class="request-section" wx:if="{{requestList.length > 0}}">
+    <view class="section-title">
+      <text>我的申请记录</text>
+    </view>
+    <view class="request-list">
+      <view class="request-item" wx:for="{{requestList}}" wx:key="_id">
+        <view class="request-info">
+          <text class="patient-name">患者：{{item.patientName}}</text>
+          <text class="request-relation">关系：{{item.relation}}</text>
+          <text class="request-time">申请时间：{{item.createTimeStr}}</text>
+        </view>
+        <view class="request-status status-{{item.status}}">
+          {{item.statusText}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

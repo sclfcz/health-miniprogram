@@ -1,0 +1,346 @@
+/* 用药效果评估页面样式 */
+.container {
+  padding: 30rpx;
+  background: transparent;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 头部 */
+.header {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: var(--text-hint);
+}
+
+/* 时间范围选择 */
+.period-selector {
+  display: flex;
+  justify-content: center;
+  gap: 16rpx;
+  margin-bottom: 30rpx;
+}
+
+.period-item {
+  padding: 16rpx 32rpx;
+  background: var(--card-bg);
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  border: 2rpx solid transparent;
+  transition: all 0.2s;
+}
+
+.period-item.active {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* 图表区域 */
+.chart-section {
+  background: var(--card-bg);
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 
+    0 8rpx 32rpx rgba(0, 0, 0, 0.08),
+    0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.chart-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.legend {
+  display: flex;
+  gap: 16rpx;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.legend-item text {
+  font-size: 22rpx;
+  color: var(--text-hint);
+}
+
+.legend-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+}
+
+.legend-dot.systolic {
+  background: #E53935;
+}
+
+.legend-dot.diastolic {
+  background: #2196F3;
+}
+
+.legend-dot.sugar {
+  background: #FF9800;
+}
+
+.legend-dot.weight {
+  background: #7E57C2;
+}
+
+.legend-dot.med {
+  background: #07C160;
+}
+
+/* 图表容器 */
+.chart-container {
+  display: flex;
+  height: 300rpx;
+}
+
+.y-axis {
+  width: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 16rpx;
+}
+
+.y-label {
+  font-size: 20rpx;
+  color: var(--text-hint);
+  text-align: right;
+}
+
+.chart-area {
+  flex: 1;
+  position: relative;
+  background: var(--bg-color);
+  border-radius: 16rpx;
+}
+
+/* 参考线 */
+.ref-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2rpx;
+  background: rgba(229, 57, 53, 0.3);
+}
+
+.ref-line.ref-high {
+  bottom: 200rpx;
+}
+
+.ref-line.ref-normal {
+  bottom: 133rpx;
+  background: rgba(7, 193, 96, 0.3);
+}
+
+.ref-line.ref-sugar-high {
+  bottom: 171rpx;
+}
+
+.ref-line.ref-sugar-normal {
+  bottom: 103rpx;
+  background: rgba(7, 193, 96, 0.3);
+}
+
+.ref-line.ref-weight-normal {
+  bottom: 80rpx;
+  background: rgba(126, 87, 194, 0.2);
+}
+
+/* 数据线和点 */
+.data-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 20rpx;
+}
+
+.data-point-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 240rpx;
+}
+
+.data-point {
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.data-point.systolic {
+  background: #E53935;
+}
+
+.data-point.diastolic {
+  background: #2196F3;
+}
+
+.data-point.sugar {
+  background: #FF9800;
+}
+
+.data-point.weight {
+  background: #7E57C2;
+}
+
+.point-value {
+  position: absolute;
+  bottom: 24rpx;
+  font-size: 18rpx;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.med-marker {
+  position: absolute;
+  bottom: -40rpx;
+}
+
+.x-label {
+  position: absolute;
+  bottom: -60rpx;
+  font-size: 18rpx;
+  color: var(--text-hint);
+}
+
+/* 结论区域 */
+.conclusion-section {
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 20rpx;
+}
+
+.conclusion-card {
+  background: var(--card-bg);
+  border-radius: 24rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: flex-start;
+  gap: 20rpx;
+  box-shadow: 
+    0 8rpx 32rpx rgba(0, 0, 0, 0.08),
+    0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.conclusion-card.good {
+  background: linear-gradient(135deg, #E8F5E9 0%, #FFFFFF 100%);
+  border-left: 8rpx solid #07C160;
+}
+
+.conclusion-card.normal {
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFFFFF 100%);
+  border-left: 8rpx solid #FF9800;
+}
+
+.conclusion-card.warning {
+  background: linear-gradient(135deg, #FFEBEE 0%, #FFFFFF 100%);
+  border-left: 8rpx solid #E53935;
+}
+
+.conclusion-icon {
+  flex-shrink: 0;
+}
+
+.conclusion-content {
+  flex: 1;
+}
+
+.conclusion-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.conclusion-text {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* 详细分析 */
+.detail-section {
+  margin-bottom: 30rpx;
+}
+
+.detail-card {
+  background: var(--card-bg);
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 
+    0 8rpx 32rpx rgba(0, 0, 0, 0.08),
+    0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--border-color);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.detail-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.detail-value.warning {
+  color: #E53935;
+}

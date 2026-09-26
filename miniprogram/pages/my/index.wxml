@@ -1,0 +1,139 @@
+<view class="container">
+  <view class="user-header">
+    <view class="user-info" bindtap="onAvatarTap">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <view class="user-text">
+        <text class="nickname">{{userInfo.nickName}}</text>
+        <text class="edit-hint">点击修改昵称</text>
+      </view>
+    </view>
+
+    <view class="id-section" wx:if="{{role === 'patient'}}">
+      <view class="id-label">我的患者ID</view>
+      <view class="id-box">
+        <text class="id-value">{{openid}}</text>
+        <view class="copy-btn" bindtap="onCopyId">
+          <text>复制</text>
+        </view>
+      </view>
+      <text class="id-hint">将此ID发送给家属，用于绑定关联</text>
+    </view>
+
+    <view class="id-section family-bind" wx:if="{{role === 'family'}}">
+      <view class="id-label">绑定患者ID</view>
+      <view class="bind-input-box">
+        <input
+          class="bind-input"
+          placeholder="粘贴患者发来的ID"
+          value="{{patientIdInput}}"
+          bindinput="onPatientIdInput"
+        />
+        <view class="bind-btn {{patientIdInput ? 'active' : ''}}" bindtap="goToBindWithId">
+          <text>去绑定</text>
+        </view>
+      </view>
+      <text class="id-hint">请向患者索要ID后粘贴到上方</text>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-item" bindtap="goToReport">
+      <view class="menu-left">
+        <view class="menu-icon-wrapper">
+          <view class="icon-report">
+            <view class="chart-bar bar-1"></view>
+            <view class="chart-bar bar-2"></view>
+            <view class="chart-bar bar-3"></view>
+          </view>
+        </view>
+        <text class="menu-text">{{role === 'family' ? '患者健康月报' : '我的健康月报'}}</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item" bindtap="goToFamily" wx:if="{{role === 'patient'}}">
+      <view class="menu-left">
+        <view class="menu-icon-wrapper">
+          <view class="icon-family">
+            <view class="head head-1"></view>
+            <view class="head head-2"></view>
+          </view>
+        </view>
+        <text class="menu-text">我的家属</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item" bindtap="goToMyPatients" wx:if="{{role === 'family'}}">
+      <view class="menu-left">
+        <view class="menu-icon-wrapper">
+          <view class="icon-family">
+            <view class="head head-1"></view>
+            <view class="head head-2"></view>
+          </view>
+        </view>
+        <text class="menu-text">我监护的患者</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item" bindtap="goToMessageCenter" wx:if="{{role === 'patient'}}">
+      <view class="menu-left">
+        <view class="menu-icon-wrapper">
+          <view class="icon-message">
+            <view class="bell"></view>
+            <view class="dot" wx:if="{{pendingCount > 0}}"></view>
+          </view>
+        </view>
+        <text class="menu-text">消息中心</text>
+        <view class="menu-badge" wx:if="{{pendingCount > 0}}">
+          <text>{{pendingCount}}</text>
+        </view>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item" bindtap="goToMyRequests" wx:if="{{role === 'family'}}">
+      <view class="menu-left">
+        <view class="menu-icon-wrapper">
+          <view class="icon-message">
+            <view class="bell"></view>
+            <view class="dot" wx:if="{{myRequestCount > 0}}"></view>
+          </view>
+        </view>
+        <text class="menu-text">消息中心</text>
+        <view class="menu-badge pending" wx:if="{{myRequestCount > 0}}">
+          <text>{{myRequestCount}}</text>
+        </view>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item" bindtap="showAbout">
+      <view class="menu-left">
+        <view class="menu-icon-wrapper">
+          <icon type="info" size="20" color="#07C160"></icon>
+        </view>
+        <text class="menu-text">关于康养日记</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+
+    <view class="menu-item" bindtap="onLogout">
+      <view class="menu-left">
+        <view class="menu-icon-wrapper">
+          <view class="icon-logout">
+            <view class="arrow"></view>
+            <view class="door"></view>
+          </view>
+        </view>
+        <text class="menu-text">退出登录</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <view class="version">
+    <text>版本 1.0.0</text>
+  </view>
+</view>

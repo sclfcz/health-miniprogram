@@ -1,0 +1,100 @@
+<view class="container">
+  <!-- Logo 和欢迎语 -->
+  <view class="header">
+    <view class="logo">
+      <view class="logo-icon">
+        <view class="heart"></view>
+      </view>
+    </view>
+    <text class="title">康养日记</text>
+    <text class="subtitle">关爱健康，记录每一天</text>
+  </view>
+
+  <!-- 注册表单 -->
+  <view class="form-section">
+    <view class="form-item">
+      <text class="form-label">选择角色</text>
+      <view class="role-options">
+        <view class="role-option {{role === 'patient' ? 'active' : ''}}" bindtap="onRoleChange" data-role="patient">
+          <view class="role-icon patient-icon"></view>
+          <text>我是患者</text>
+        </view>
+        <view class="role-option {{role === 'family' ? 'active' : ''}}" bindtap="onRoleChange" data-role="family">
+          <view class="role-icon family-icon"></view>
+          <text>我是家属</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">真实姓名</text>
+      <input 
+        class="form-input" 
+        placeholder="请输入您的真实姓名" 
+        value="{{name}}"
+        bindinput="onNameInput"
+        maxlength="20"
+      />
+    </view>
+
+    <!-- 患者专属：性别 -->
+    <view class="form-item" wx:if="{{role === 'patient'}}">
+      <text class="form-label">性别</text>
+      <view class="gender-options">
+        <view class="gender-option {{gender === '男' ? 'active' : ''}}" bindtap="onGenderChange" data-gender="男">
+          <text>男</text>
+        </view>
+        <view class="gender-option {{gender === '女' ? 'active' : ''}}" bindtap="onGenderChange" data-gender="女">
+          <text>女</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 患者专属：出生日期 -->
+    <view class="form-item" wx:if="{{role === 'patient'}}">
+      <text class="form-label">出生日期</text>
+      <picker mode="date" value="{{birthday}}" start="1920-01-01" end="{{today}}" bindchange="onBirthdayChange">
+        <view class="form-picker">
+          <text class="{{birthday ? 'picker-value' : 'picker-placeholder'}}">{{birthday || '请选择出生日期'}}</text>
+          <view class="picker-arrow"></view>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 家属专属：亲属关系 -->
+    <view class="form-item" wx:if="{{role === 'family'}}">
+      <text class="form-label">亲属关系</text>
+      <picker mode="selector" range="{{relationList}}" value="{{relationIndex}}" bindchange="onRelationChange">
+        <view class="form-picker">
+          <text class="{{relation ? 'picker-value' : 'picker-placeholder'}}">{{relation || '请选择亲属关系'}}</text>
+          <view class="picker-arrow"></view>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">手机号码</text>
+      <input 
+        class="form-input" 
+        type="number"
+        placeholder="请输入您的手机号码" 
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+        maxlength="11"
+      />
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="onSubmit" loading="{{loading}}">
+    授权并绑定
+  </button>
+
+  <!-- 协议提示 -->
+  <view class="agreement">
+    <text>点击按钮即表示同意</text>
+    <text class="link">《用户服务协议》</text>
+    <text>和</text>
+    <text class="link">《隐私政策》</text>
+  </view>
+</view>

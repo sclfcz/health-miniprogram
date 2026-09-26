@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="header">
+    <text class="title">我监护的患者</text>
+    <text class="subtitle">已绑定的患者列表</text>
+  </view>
+
+  <view class="list" wx:if="{{patientList.length > 0}}">
+    <view class="patient-card" wx:for="{{patientList}}" wx:key="_id" bindtap="viewDetail" data-openid="{{item.patientOpenid}}">
+      <view class="patient-header">
+        <view class="patient-avatar">
+          <text>{{item.patientName.substring(0,1)}}</text>
+        </view>
+        <view class="patient-info">
+          <text class="patient-name">{{item.patientName}}</text>
+          <text class="patient-relation">{{item.relation}}</text>
+        </view>
+        <view class="status-tag">
+          <text>已绑定</text>
+        </view>
+      </view>
+      <view class="patient-actions">
+        <view class="action-btn" catchtap="viewHealth" data-openid="{{item.patientOpenid}}">
+          <view class="action-icon health-icon"></view>
+          <text>健康数据</text>
+        </view>
+        <view class="action-btn" catchtap="viewMedication" data-openid="{{item.patientOpenid}}">
+          <view class="action-icon med-icon"></view>
+          <text>用药情况</text>
+        </view>
+        <view class="action-btn" catchtap="makeCall" data-phone="{{item.patientPhone}}">
+          <view class="action-icon call-icon"></view>
+          <text>拨打电话</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{patientList.length === 0 && !loading}}">
+    <view class="empty-icon">
+      <view class="empty-person"></view>
+    </view>
+    <text class="empty-title">暂无关联患者</text>
+    <text class="empty-desc">请先在个人中心绑定患者</text>
+    <view class="empty-btn" bindtap="goToBind">
+      <text>去绑定</text>
+    </view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

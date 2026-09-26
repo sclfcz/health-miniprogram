@@ -1,0 +1,88 @@
+<view class="container">
+  <!-- 月报概览 -->
+  <view class="report-header">
+    <text class="report-title">{{monthStr}} 健康月报</text>
+    <text class="report-subtitle">用药依从性统计</text>
+  </view>
+
+  <!-- 依从性卡片 -->
+  <view class="compliance-card">
+    <view class="compliance-circle">
+      <text class="compliance-value">{{complianceRate}}</text>
+      <text class="compliance-unit">%</text>
+    </view>
+    <text class="compliance-label">用药依从性</text>
+  </view>
+
+  <!-- 评估结果 -->
+  <view class="evaluation-card">
+    <view class="evaluation-header">
+      <text class="evaluation-title">评估结果</text>
+    </view>
+    <view class="evaluation-content">
+      <text class="evaluation-text">{{evaluationText}}</text>
+    </view>
+    <view class="evaluation-level {{evaluationLevel}}">
+      <text>{{evaluationLevelText}}</text>
+    </view>
+  </view>
+
+  <!-- 详细数据 -->
+  <view class="stats-card">
+    <text class="stats-title">详细数据</text>
+    <view class="stats-list">
+      <view class="stats-item">
+        <text class="stats-label">应服药次数</text>
+        <text class="stats-value">{{shouldTakeCount}}次</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-label">实际服药次数</text>
+        <text class="stats-value">{{actualTakeCount}}次</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-label">漏服次数</text>
+        <text class="stats-value missed">{{missedCount}}次</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-label">补服次数</text>
+        <text class="stats-value supplement">{{supplementCount}}次</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 每日记录 -->
+  <view class="daily-card">
+    <text class="stats-title">本月每日记录</text>
+    <view class="daily-grid">
+      <block wx:for="{{dailyRecords}}" wx:key="date">
+        <view class="daily-item status-{{item.status}}" wx:if="{{item.show}}">
+          <text class="daily-day">{{item.day}}</text>
+          <view class="daily-dot"></view>
+        </view>
+        <view class="daily-item empty" wx:else>
+          <text class="daily-day">{{item.day}}</text>
+        </view>
+      </block>
+    </view>
+    <view class="daily-legend">
+      <view class="legend-item">
+        <view class="legend-dot taken"></view>
+        <text>已服药</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot missed"></view>
+        <text>漏服</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot supplement"></view>
+        <text>补服</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 建议卡片 -->
+  <view class="advice-card">
+    <text class="stats-title">健康建议</text>
+    <text class="advice-text">{{adviceText}}</text>
+  </view>
+</view>

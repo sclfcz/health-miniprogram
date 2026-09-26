@@ -1,0 +1,9 @@
+{
+  "name": "medicationReminder",
+  "version": "1.0.0",
+  "description": "Check due medication plans and send patient subscribe reminders",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

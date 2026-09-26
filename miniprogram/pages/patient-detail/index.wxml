@@ -1,0 +1,82 @@
+<view class="container">
+  <view class="header">
+    <view class="patient-info">
+      <view class="avatar">
+        <text>{{patientName.substring(0,1)}}</text>
+      </view>
+      <view class="info">
+        <text class="name">{{patientName}}</text>
+        <text class="relation">{{relation}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <text class="section-title">最近健康数据</text>
+    <view class="data-card" wx:if="{{latestData}}">
+      <view class="data-item">
+        <text class="data-label">血压</text>
+        <text class="data-value {{latestData.systolic > 140 || latestData.diastolic > 90 ? 'warning' : 'normal'}}">
+          {{latestData.systolic}}/{{latestData.diastolic}} mmHg
+        </text>
+      </view>
+      <view class="data-item">
+        <text class="data-label">血糖</text>
+        <text class="data-value {{latestData.sugar > 7.0 ? 'warning' : 'normal'}}">
+          {{latestData.sugar}} mmol/L
+        </text>
+      </view>
+      <view class="data-item" wx:if="{{latestData.weight !== undefined}}">
+        <text class="data-label">体重</text>
+        <text class="data-value normal">
+          {{latestData.weight}} kg
+        </text>
+      </view>
+      <view class="data-time">
+        <icon type="waiting" size="14" color="#999"></icon>
+        <text class="time-text">测量时间：{{latestData.measureTime}}</text>
+      </view>
+    </view>
+    <view class="empty-card" wx:else>
+      <text class="empty-text">暂无测量记录</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <text class="section-title">今日用药情况</text>
+    <view class="med-list" wx:if="{{medList.length > 0}}">
+      <view class="med-item" wx:for="{{medList}}" wx:key="id">
+        <view class="med-status {{item.status === 'done' ? 'done' : 'pending'}}">
+          <text>{{item.status === 'done' ? '已服' : '待服'}}</text>
+        </view>
+        <view class="med-info">
+          <text class="med-name">{{item.medicineName}}</text>
+          <text class="med-time">{{item.timeSlot}}</text>
+          <text class="med-cycle">{{item.cycleText}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty-card" wx:else>
+      <text class="empty-text">今天暂无服药任务</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <text class="section-title">快捷操作</text>
+    <view class="action-grid">
+      <view class="action-item" bindtap="onEnablePatientReminder">
+        <view class="action-icon reminder-icon">
+          <view class="icon-bell-small"></view>
+        </view>
+        <text class="action-text">接收漏服提醒</text>
+      </view>
+
+      <view class="action-item" bindtap="makePhoneCall">
+        <view class="action-icon phone-icon">
+          <view class="icon-phone"></view>
+        </view>
+        <text class="action-text">拨打电话</text>
+      </view>
+    </view>
+  </view>
+</view>

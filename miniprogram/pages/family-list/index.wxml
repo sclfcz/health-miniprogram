@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="header">
+    <text class="title">我的家属</text>
+  </view>
+
+  <view class="list-container">
+    <block wx:for="{{familyList}}" wx:key="_id">
+      <view class="family-card">
+        <view class="card-main">
+          <view class="avatar">
+            <text class="avatar-text">{{item.familyName ? item.familyName.substring(0,1) : item.relation.substring(0,1)}}</text>
+          </view>
+          <view class="info">
+            <text class="name">{{item.familyName || item.relation}}</text>
+            <text class="relation-tag">{{item.relation}}</text>
+            <text class="phone">{{item.familyPhone || item.phone}}</text>
+          </view>
+          <view class="card-actions-right">
+            <view class="edit-btn" catchtap="onEdit" data-id="{{item._id}}">
+              <view class="icon-edit"></view>
+            </view>
+          </view>
+        </view>
+        <view class="card-footer">
+          <view class="card-action {{callingId == item._id ? 'calling' : ''}}" bindtap="makePhoneCall" data-phone="{{item.familyPhone || item.phone}}" data-id="{{item._id}}">
+            <view class="icon-phone"></view>
+            <text class="call-text">{{callingId == item._id ? '正在呼叫...' : '拨打电话'}}</text>
+          </view>
+          <view class="delete-action" catchtap="onDelete" data-id="{{item._id}}" data-name="{{item.familyName || item.relation}}">
+            <text class="delete-text">删除</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{familyList.length === 0}}" class="empty-state">
+      <view class="empty-icon-wrapper">
+        <view class="icon-family-empty">
+          <view class="person person-1"></view>
+          <view class="person person-2"></view>
+          <view class="person person-3"></view>
+        </view>
+      </view>
+      <text class="empty-text">暂无关联家属</text>
+      <text class="empty-hint">点击右下角 + 号添加</text>
+    </view>
+  </view>
+
+  <view class="fab-btn" bindtap="goToAdd">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

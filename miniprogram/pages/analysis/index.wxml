@@ -1,0 +1,190 @@
+<view class="container">
+  <view class="header">
+    <text class="title">健康趋势分析</text>
+    <text class="subtitle">基于健康指标与用药记录的关联分析</text>
+  </view>
+
+  <view class="period-selector">
+    <view class="period-item {{period === 7 ? 'active' : ''}}" bindtap="onPeriodChange" data-period="7">近7天</view>
+    <view class="period-item {{period === 14 ? 'active' : ''}}" bindtap="onPeriodChange" data-period="14">近14天</view>
+    <view class="period-item {{period === 30 ? 'active' : ''}}" bindtap="onPeriodChange" data-period="30">近30天</view>
+  </view>
+
+  <view class="chart-section">
+    <view class="chart-header">
+      <text class="chart-title">血压趋势</text>
+      <view class="legend">
+        <view class="legend-item">
+          <view class="legend-dot systolic"></view>
+          <text>收缩压</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot diastolic"></view>
+          <text>舒张压</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot med"></view>
+          <text>服药</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="chart-container">
+      <view class="y-axis">
+        <text class="y-label">180</text>
+        <text class="y-label">140</text>
+        <text class="y-label">100</text>
+        <text class="y-label">60</text>
+      </view>
+
+      <view class="chart-area">
+        <view class="ref-line ref-high"></view>
+        <view class="ref-line ref-normal"></view>
+        <view class="data-line">
+          <block wx:for="{{bpData}}" wx:key="date">
+            <view class="data-point-wrapper">
+              <view wx:if="{{item.systolic !== null}}" class="data-point systolic" style="bottom: {{item.systolicPos}}rpx;">
+                <text class="point-value">{{item.systolic}}</text>
+              </view>
+              <view wx:if="{{item.diastolic !== null}}" class="data-point diastolic" style="bottom: {{item.diastolicPos}}rpx;">
+                <text class="point-value">{{item.diastolic}}</text>
+              </view>
+              <view wx:if="{{item.hasMed}}" class="med-marker">
+                <icon type="success" size="12" color="#07C160"></icon>
+              </view>
+              <text class="x-label">{{item.dayLabel}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="chart-section">
+    <view class="chart-header">
+      <text class="chart-title">血糖趋势</text>
+      <view class="legend">
+        <view class="legend-item">
+          <view class="legend-dot sugar"></view>
+          <text>血糖</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot med"></view>
+          <text>服药</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="chart-container sugar-chart">
+      <view class="y-axis">
+        <text class="y-label">15</text>
+        <text class="y-label">10</text>
+        <text class="y-label">7</text>
+        <text class="y-label">4</text>
+        <text class="y-label">1</text>
+      </view>
+
+      <view class="chart-area">
+        <view class="ref-line ref-sugar-high"></view>
+        <view class="ref-line ref-sugar-normal"></view>
+        <view class="data-line sugar-line">
+          <block wx:for="{{sugarData}}" wx:key="date">
+            <view class="data-point-wrapper">
+              <view wx:if="{{item.sugar !== null}}" class="data-point sugar" style="bottom: {{item.sugarPos}}rpx;">
+                <text class="point-value">{{item.sugar}}</text>
+              </view>
+              <view wx:if="{{item.hasMed}}" class="med-marker">
+                <icon type="success" size="12" color="#07C160"></icon>
+              </view>
+              <text class="x-label">{{item.dayLabel}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="chart-section">
+    <view class="chart-header">
+      <text class="chart-title">体重趋势</text>
+      <view class="legend">
+        <view class="legend-item">
+          <view class="legend-dot weight"></view>
+          <text>体重</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="chart-container weight-chart">
+      <view class="y-axis">
+        <text class="y-label">120</text>
+        <text class="y-label">90</text>
+        <text class="y-label">60</text>
+        <text class="y-label">30</text>
+      </view>
+
+      <view class="chart-area">
+        <view class="ref-line ref-weight-normal"></view>
+        <view class="data-line">
+          <block wx:for="{{weightData}}" wx:key="date">
+            <view class="data-point-wrapper">
+              <view wx:if="{{item.weight !== null}}" class="data-point weight" style="bottom: {{item.weightPos}}rpx;">
+                <text class="point-value">{{item.weight}}</text>
+              </view>
+              <text class="x-label">{{item.dayLabel}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="conclusion-section">
+    <text class="section-title">分析结论</text>
+    <view class="conclusion-card {{conclusionLevel}}">
+      <view class="conclusion-icon">
+        <icon wx:if="{{conclusionLevel === 'good'}}" type="success" size="24" color="#07C160"></icon>
+        <icon wx:elif="{{conclusionLevel === 'normal'}}" type="info" size="24" color="#FF9800"></icon>
+        <icon wx:else type="warn" size="24" color="#E53935"></icon>
+      </view>
+      <view class="conclusion-content">
+        <text class="conclusion-title">{{conclusionTitle}}</text>
+        <text class="conclusion-text">{{conclusionText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="detail-section">
+    <text class="section-title">详细分析</text>
+    <view class="detail-card">
+      <view class="detail-item">
+        <text class="detail-label">统计周期</text>
+        <text class="detail-value">{{period}}天</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">测量次数</text>
+        <text class="detail-value">{{measureCount}}次</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">服药次数</text>
+        <text class="detail-value">{{medCount}}次</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">平均收缩压</text>
+        <text class="detail-value {{avgSystolic > 140 ? 'warning' : ''}}">{{avgSystolic}} mmHg</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">平均舒张压</text>
+        <text class="detail-value {{avgDiastolic > 90 ? 'warning' : ''}}">{{avgDiastolic}} mmHg</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">平均血糖</text>
+        <text class="detail-value {{avgSugar > 7.0 ? 'warning' : ''}}">{{avgSugar}} mmol/L</text>
+      </view>
+      <view class="detail-item">
+        <text class="detail-label">平均体重</text>
+        <text class="detail-value">{{avgWeight}} kg</text>
+      </view>
+    </view>
+  </view>
+</view>

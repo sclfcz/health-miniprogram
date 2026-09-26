@@ -1,0 +1,65 @@
+<view class="container">
+  <view class="header">
+    <text class="title">今日用药</text>
+    <text class="date">{{todayDate}}</text>
+  </view>
+
+  <view class="list-container">
+    <block wx:for="{{scheduleList}}" wx:key="id">
+      <view class="med-card" bindtap="goToDetail" data-id="{{item.plan_id}}" data-slot="{{item.time_slot}}">
+        <view class="delete-btn" catchtap="onDeletePlan" data-id="{{item.plan_id}}" data-name="{{item.med_name}}">
+          <text class="delete-btn-text">删</text>
+        </view>
+
+        <view class="status-tag status-{{item.status}}">
+          <text>{{item.statusText}}</text>
+        </view>
+
+        <view class="med-icon">
+          <view class="icon-pill-small"></view>
+        </view>
+
+        <view class="med-info">
+          <text class="med-name">{{item.med_name}}</text>
+          <view class="med-time">
+            <icon type="waiting" size="12" color="#999"></icon>
+            <text class="time-text">{{item.scheduled_time}}</text>
+            <text class="dosage-text">{{item.dosage}}</text>
+          </view>
+          <text class="med-remark">{{item.cycleText}}</text>
+        </view>
+
+        <view class="action-area">
+          <view wx:if="{{item.status === 'pending'}}" class="take-btn" catchtap="onTake" data-item="{{item}}">
+            <text>服药</text>
+          </view>
+
+          <view wx:elif="{{item.status === 'taken'}}" class="taken-info">
+            <icon type="success" size="18" color="#07C160"></icon>
+            <text>{{item.taken_time}}</text>
+          </view>
+
+          <view wx:elif="{{item.status === 'missed'}}" class="supplement-btn" catchtap="onSupplement" data-item="{{item}}">
+            <text>补服</text>
+          </view>
+
+          <view wx:elif="{{item.status === 'supplement'}}" class="supplement-info">
+            <text>已补服</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{scheduleList.length === 0}}" class="empty-state">
+      <view class="empty-icon-wrapper">
+        <view class="icon-list-empty"></view>
+      </view>
+      <text class="empty-text">暂无用药计划</text>
+      <text class="empty-hint">点击右下角 + 新增计划</text>
+    </view>
+  </view>
+
+  <view class="fab-btn" bindtap="goToAdd">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

@@ -1,0 +1,259 @@
+.container {
+  padding: 30rpx;
+  background: #F5F5F5;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 30rpx;
+}
+
+.patient-info {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary-light) 0%, #C8E6C9 100%);
+  border-radius: 24rpx;
+  padding: 30rpx;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.avatar text {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 8rpx;
+}
+
+.relation {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.section {
+  margin-top: 30rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 20rpx;
+}
+
+.data-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.data-item:last-of-type {
+  border-bottom: none;
+}
+
+.data-label {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.data-value {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.data-value.normal {
+  color: var(--primary-color);
+}
+
+.data-value.warning {
+  color: var(--warning-color);
+}
+
+.data-time {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 16rpx;
+}
+
+.time-text {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 8rpx;
+}
+
+.empty-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  text-align: center;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-hint);
+}
+
+/* 用药列表 */
+.med-list {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.med-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.med-item:last-child {
+  border-bottom: none;
+}
+
+.med-status {
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.med-status.done {
+  background: #E8F5E9;
+}
+
+.med-status.done text {
+  color: #4CAF50;
+}
+
+.med-status.pending {
+  background: #FFF3E0;
+}
+
+.med-status.pending text {
+  color: #FF9800;
+}
+
+.med-status text {
+  font-size: 24rpx;
+}
+
+.med-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.med-name {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  margin-bottom: 4rpx;
+}
+
+.med-time {
+  font-size: 24rpx;
+  color: var(--text-hint);
+}
+
+/* 快捷操作 */
+.action-grid {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-item {
+  flex: 1;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.action-item:active {
+  opacity: 0.8;
+}
+
+.action-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.phone-icon {
+  background: #E3F2FD;
+}
+
+.reminder-icon {
+  background: #E8F5E9;
+}
+
+.icon-bell-small {
+  width: 28rpx;
+  height: 24rpx;
+  border: 4rpx solid #07C160;
+  border-radius: 14rpx 14rpx 0 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.icon-bell-small::after {
+  content: '';
+  position: absolute;
+  bottom: -8rpx;
+  left: 50%;
+  width: 10rpx;
+  height: 4rpx;
+  margin-left: -5rpx;
+  background: #07C160;
+  border-radius: 2rpx;
+}
+
+.icon-phone {
+  width: 28rpx;
+  height: 28rpx;
+  border: 4rpx solid #2196F3;
+  border-radius: 6rpx 6rpx 0 6rpx;
+  transform: rotate(-45deg);
+}
+
+.action-text {
+  font-size: 26rpx;
+  color: var(--text-primary);
+}

@@ -1,0 +1,59 @@
+<view class="container">
+  <view class="header">
+    <text class="title">健康记录</text>
+    <view class="analysis-btn" bindtap="goToAnalysis">
+      <icon type="info" size="14" color="#07C160"></icon>
+      <text>趋势分析</text>
+    </view>
+  </view>
+
+  <view class="list-container">
+    <block wx:for="{{dataList}}" wx:key="_id">
+      <view class="data-card">
+        <view class="card-header">
+          <view class="time-wrapper">
+            <icon type="waiting" size="14" color="#999"></icon>
+            <text class="measure-time">{{item.measure_time}}</text>
+          </view>
+          <text class="delete-link" catchtap="onDelete" data-id="{{item._id}}" data-index="{{index}}">删除</text>
+        </view>
+        <view class="card-body">
+          <view class="data-row">
+            <text class="data-label">血压</text>
+            <text class="data-value {{item.systolic > 140 || item.diastolic > 90 ? 'warning' : 'normal'}}">
+              {{item.systolic}}/{{item.diastolic}} mmHg
+            </text>
+          </view>
+          <view class="data-row">
+            <text class="data-label">血糖</text>
+            <text class="data-value {{item.sugar > 7.0 ? 'warning' : 'normal'}}">
+              {{item.sugar}} mmol/L
+            </text>
+          </view>
+          <view class="data-row">
+            <text class="data-label">体重</text>
+            <text class="data-value normal">
+              {{item.weight || '--'}} kg
+            </text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{dataList.length === 0}}" class="empty-state">
+      <view class="empty-icon-wrapper">
+        <view class="icon-chart-empty">
+          <view class="bar bar-1"></view>
+          <view class="bar bar-2"></view>
+          <view class="bar bar-3"></view>
+        </view>
+      </view>
+      <text class="empty-text">暂无健康记录</text>
+      <text class="empty-hint">点击右下角 + 号添加</text>
+    </view>
+  </view>
+
+  <view class="fab-btn" bindtap="goToAdd">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

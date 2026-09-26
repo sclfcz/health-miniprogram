@@ -1,0 +1,274 @@
+/* 新增用药页样式 */
+.container {
+  padding: 30rpx;
+  background: transparent;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 180rpx;
+}
+
+.form-section {
+  background: var(--card-bg);
+  border-radius: 24rpx;
+  padding: 0 30rpx;
+  box-shadow: 
+    0 8rpx 32rpx rgba(0, 0, 0, 0.08),
+    0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1rpx solid rgba(255, 255, 255, 0.6);
+}
+
+.form-item {
+  padding: 32rpx 0;
+  border-bottom: 1rpx solid var(--border-color);
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.label-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.required {
+  color: var(--warning-color);
+  margin-left: 8rpx;
+  font-size: 28rpx;
+}
+
+.optional {
+  font-size: 24rpx;
+  color: var(--text-hint);
+  margin-left: 8rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 0 24rpx;
+  background: var(--bg-color);
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--text-primary);
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: var(--text-disabled);
+}
+
+.suggestion-panel {
+  margin-top: 16rpx;
+  background: var(--bg-color);
+  border-radius: 16rpx;
+  overflow: hidden;
+  border: 1rpx solid rgba(0, 0, 0, 0.04);
+}
+
+.suggestion-item {
+  padding: 22rpx 24rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+.suggestion-name {
+  font-size: 30rpx;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.suggestion-meta {
+  font-size: 24rpx;
+  color: var(--text-hint);
+  line-height: 1.5;
+}
+
+.suggestion-empty {
+  padding: 24rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: var(--text-hint);
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 24rpx;
+  background: var(--bg-color);
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+
+.form-textarea::placeholder {
+  color: var(--text-disabled);
+}
+
+.btn-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: transparent;
+}
+
+.save-btn {
+  width: 100%;
+  height: 100rpx;
+  background: var(--primary-color);
+  color: #FFFFFF;
+  font-size: 34rpx;
+  font-weight: 500;
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(7, 193, 96, 0.3);
+  transition: all 0.2s;
+}
+
+.save-btn:active {
+  transform: scale(0.96);
+  opacity: 0.9;
+}
+
+.save-btn::after {
+  border: none;
+}
+
+/* 频率选择器 */
+.frequency-selector {
+  display: flex;
+  gap: 16rpx;
+  flex-wrap: wrap;
+}
+
+.freq-option {
+  flex: 1;
+  min-width: 140rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  border: 2rpx solid transparent;
+  transition: all 0.2s;
+}
+
+.freq-option.active {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 500;
+}
+
+.cycle-type-selector,
+.cycle-detail-grid,
+.month-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.cycle-type-chip,
+.cycle-detail-chip,
+.month-chip {
+  min-width: 132rpx;
+  padding: 18rpx 20rpx;
+  text-align: center;
+  background: var(--bg-color);
+  border-radius: 16rpx;
+  border: 2rpx solid transparent;
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  box-sizing: border-box;
+}
+
+.cycle-type-chip.active,
+.cycle-detail-chip.active,
+.month-chip.active {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.cycle-summary {
+  margin: 20rpx 0 24rpx;
+  padding: 18rpx 20rpx;
+  background: rgba(7, 193, 96, 0.08);
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  color: var(--primary-color);
+}
+
+.month-grid {
+  max-height: 420rpx;
+  overflow-y: auto;
+}
+
+.month-chip {
+  min-width: 96rpx;
+}
+
+/* 时间列表 */
+.time-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.time-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-color);
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+}
+
+.time-label {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+.time-picker {
+  display: flex;
+  align-items: center;
+}
+
+.time-value {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-right: 8rpx;
+}
+
+.time-arrow {
+  font-size: 28rpx;
+  color: var(--text-hint);
+}

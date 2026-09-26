@@ -1,0 +1,138 @@
+<view class="container">
+  <view class="form-section">
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">{{texts.medNameLabel}}</text>
+        <text class="required">*</text>
+      </view>
+      <input
+        class="form-input"
+        placeholder="{{texts.medNamePlaceholder}}"
+        value="{{med_name}}"
+        bindinput="onNameInput"
+        bindblur="hideSuggestions"
+      />
+      <view class="suggestion-panel" wx:if="{{showSuggestions}}">
+        <view class="suggestion-empty" wx:if="{{searchingMedicine}}">
+          <text>{{texts.searchingMedicine}}</text>
+        </view>
+        <view class="suggestion-empty" wx:elif="{{medicineSuggestions.length === 0}}">
+          <text>{{texts.noMedicineFound}}</text>
+        </view>
+        <view
+          wx:for="{{medicineSuggestions}}"
+          wx:key="id"
+          class="suggestion-item"
+          bindtap="onSuggestionTap"
+          data-item="{{item}}"
+        >
+          <text class="suggestion-name">{{item.med_name}}</text>
+          <text class="suggestion-meta" wx:if="{{item.dosage}}">{{texts.commonDosagePrefix}}{{item.dosage}}</text>
+          <text class="suggestion-meta" wx:if="{{item.efficacy}}">{{texts.efficacyPrefix}}{{item.efficacy}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">{{texts.dosageLabel}}</text>
+        <text class="required">*</text>
+      </view>
+      <input
+        class="form-input"
+        placeholder="{{texts.dosagePlaceholder}}"
+        value="{{dosage}}"
+        bindinput="onDosageInput"
+      />
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">{{texts.frequencyLabel}}</text>
+        <text class="required">*</text>
+      </view>
+      <view class="frequency-selector">
+        <view class="freq-option {{frequency == 1 ? 'active' : ''}}" bindtap="onFrequencyChange" data-freq="1">{{texts.frequency1}}</view>
+        <view class="freq-option {{frequency == 2 ? 'active' : ''}}" bindtap="onFrequencyChange" data-freq="2">{{texts.frequency2}}</view>
+        <view class="freq-option {{frequency == 3 ? 'active' : ''}}" bindtap="onFrequencyChange" data-freq="3">{{texts.frequency3}}</view>
+        <view class="freq-option {{frequency == 4 ? 'active' : ''}}" bindtap="onFrequencyChange" data-freq="4">{{texts.frequency4}}</view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">{{texts.cycleLabel}}</text>
+        <text class="required">*</text>
+      </view>
+      <view class="cycle-type-selector">
+        <view
+          wx:for="{{cycleTypeOptions}}"
+          wx:key="value"
+          class="cycle-type-chip {{cycleType === item.value ? 'active' : ''}}"
+          bindtap="onCycleTypeChange"
+          data-type="{{item.value}}"
+        >{{item.label}}</view>
+      </view>
+      <view class="cycle-summary">{{cycleSummary}}</view>
+
+      <view wx:if="{{cycleType === 'week'}}" class="cycle-detail-grid">
+        <view
+          wx:for="{{weekOptions}}"
+          wx:key="value"
+          class="cycle-detail-chip {{item.checked ? 'active' : ''}}"
+          bindtap="onWeekDayToggle"
+          data-value="{{item.value}}"
+        >{{item.label}}</view>
+      </view>
+
+      <view wx:if="{{cycleType === 'month'}}" class="month-grid">
+        <view
+          wx:for="{{monthOptions}}"
+          wx:key="value"
+          class="month-chip {{item.checked ? 'active' : ''}}"
+          bindtap="onMonthDayToggle"
+          data-value="{{item.value}}"
+        >{{item.label}}</view>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">{{texts.timeLabel}}</text>
+        <text class="required">*</text>
+      </view>
+      <view class="time-list">
+        <block wx:for="{{timeSlots}}" wx:key="index">
+          <view class="time-item">
+            <text class="time-label">{{texts.timePrefix}}{{index + 1}}{{texts.timeSuffix}}</text>
+            <picker mode="time" value="{{item}}" bindchange="onTimeChange" data-index="{{index}}">
+              <view class="time-picker">
+                <text class="time-value">{{item}}</text>
+                <text class="time-arrow">></text>
+              </view>
+            </picker>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">{{texts.notesLabel}}</text>
+        <text class="optional">{{texts.optionalText}}</text>
+      </view>
+      <textarea
+        class="form-textarea"
+        placeholder="{{texts.notesPlaceholder}}"
+        value="{{notes}}"
+        bindinput="onNotesInput"
+        maxlength="200"
+        auto-height
+      />
+    </view>
+  </view>
+
+  <view class="btn-container">
+    <button class="save-btn" bindtap="onSubmit">{{texts.savePlan}}</button>
+  </view>
+</view>

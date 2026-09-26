@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="article-header">
+    <text class="article-title">{{article.title}}</text>
+    <view class="article-meta">
+      <text class="article-tag">{{article.tag}}</text>
+      <text class="article-time">{{article.createTimeStr}}</text>
+    </view>
+  </view>
+
+  <view class="article-content">
+    <text class="content-text">{{article.content}}</text>
+  </view>
+</view>

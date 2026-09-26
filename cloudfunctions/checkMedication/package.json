@@ -1,0 +1,9 @@
+{
+  "name": "checkMedication",
+  "version": "1.0.0",
+  "description": "定时检查用药记录，漏服时通知家属",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

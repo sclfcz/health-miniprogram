@@ -1,0 +1,9 @@
+{
+  "name": "createReminderTestData",
+  "version": "1.0.0",
+  "description": "创建可触发提醒的测试用药计划数据",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

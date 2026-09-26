@@ -1,0 +1,9 @@
+{
+  "name": "searchMedicine",
+  "version": "1.0.0",
+  "description": "药品搜索联想",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

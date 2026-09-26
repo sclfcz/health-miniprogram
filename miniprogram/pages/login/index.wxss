@@ -1,0 +1,311 @@
+/* 登录注册页面样式 */
+.container {
+  min-height: 100vh;
+  padding: 60rpx 40rpx;
+  background: linear-gradient(180deg, #E8F5E9 0%, #FFFFFF 50%);
+  box-sizing: border-box;
+}
+
+/* 头部区域 */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60rpx;
+}
+
+.logo {
+  width: 160rpx;
+  height: 160rpx;
+  background: linear-gradient(135deg, #07C160 0%, #10B981 100%);
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16rpx 48rpx rgba(7, 193, 96, 0.3);
+  margin-bottom: 24rpx;
+}
+
+.logo-icon {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 心形图标 */
+.heart {
+  width: 50rpx;
+  height: 45rpx;
+  position: relative;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 25rpx;
+  height: 40rpx;
+  background: #FFFFFF;
+  border-radius: 25rpx 25rpx 0 0;
+}
+
+.heart::before {
+  left: 0;
+  transform: rotate(-45deg);
+  transform-origin: bottom right;
+}
+
+.heart::after {
+  right: 0;
+  transform: rotate(45deg);
+  transform-origin: bottom left;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 12rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* 表单区域 */
+.form-section {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.06);
+  margin-bottom: 40rpx;
+}
+
+.form-item {
+  margin-bottom: 32rpx;
+}
+
+.form-item:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 16rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 88rpx;
+  padding: 0 24rpx;
+  font-size: 30rpx;
+  color: #333333;
+  background: #F5F5F5;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+}
+
+/* 选择器样式 */
+.form-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88rpx;
+  padding: 0 24rpx;
+  font-size: 30rpx;
+  background: #F5F5F5;
+  border-radius: 16rpx;
+}
+
+.picker-value {
+  color: #333333;
+}
+
+.picker-placeholder {
+  color: #999999;
+}
+
+.picker-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 4rpx solid #999999;
+  border-bottom: 4rpx solid #999999;
+  transform: rotate(45deg);
+}
+
+/* 角色选择 */
+.role-options {
+  display: flex;
+  gap: 24rpx;
+}
+
+.role-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx 0;
+  background: #F5F5F5;
+  border-radius: 16rpx;
+  border: 4rpx solid transparent;
+  transition: all 0.2s;
+}
+
+.role-option.active {
+  background: rgba(7, 193, 96, 0.1);
+  border-color: #07C160;
+}
+
+.role-icon {
+  width: 64rpx;
+  height: 64rpx;
+  margin-bottom: 16rpx;
+  border-radius: 50%;
+}
+
+/* 患者图标 - 人物 */
+.patient-icon {
+  background: #CCCCCC;
+  position: relative;
+}
+
+.patient-icon::before {
+  content: '';
+  position: absolute;
+  width: 24rpx;
+  height: 24rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  top: 12rpx;
+  left: 50%;
+  margin-left: -12rpx;
+}
+
+.patient-icon::after {
+  content: '';
+  position: absolute;
+  width: 36rpx;
+  height: 18rpx;
+  background: #FFFFFF;
+  border-radius: 18rpx 18rpx 0 0;
+  bottom: 10rpx;
+  left: 50%;
+  margin-left: -18rpx;
+}
+
+.role-option.active .patient-icon {
+  background: #07C160;
+}
+
+/* 家属图标 - 两个人 */
+.family-icon {
+  background: #CCCCCC;
+  position: relative;
+}
+
+.family-icon::before {
+  content: '';
+  position: absolute;
+  width: 18rpx;
+  height: 18rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  top: 14rpx;
+  left: 10rpx;
+}
+
+.family-icon::after {
+  content: '';
+  position: absolute;
+  width: 14rpx;
+  height: 14rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  top: 18rpx;
+  right: 12rpx;
+}
+
+.role-option.active .family-icon {
+  background: #07C160;
+}
+
+.role-option text {
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.role-option.active text {
+  color: #07C160;
+  font-weight: 500;
+}
+
+/* 性别选择 */
+.gender-options {
+  display: flex;
+  gap: 24rpx;
+}
+
+.gender-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  background: #F5F5F5;
+  border-radius: 16rpx;
+  border: 4rpx solid transparent;
+  transition: all 0.2s;
+}
+
+.gender-option.active {
+  background: rgba(7, 193, 96, 0.1);
+  border-color: #07C160;
+}
+
+.gender-option text {
+  font-size: 30rpx;
+  color: #666666;
+}
+
+.gender-option.active text {
+  color: #07C160;
+  font-weight: 500;
+}
+
+/* 提交按钮 */
+.submit-btn {
+  width: 100%;
+  height: 96rpx;
+  line-height: 96rpx;
+  background: linear-gradient(135deg, #07C160 0%, #10B981 100%);
+  color: #FFFFFF;
+  font-size: 34rpx;
+  font-weight: 500;
+  border-radius: 48rpx;
+  border: none;
+  box-shadow: 0 8rpx 24rpx rgba(7, 193, 96, 0.3);
+}
+
+.submit-btn:active {
+  opacity: 0.9;
+}
+
+/* 协议提示 */
+.agreement {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 40rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.agreement .link {
+  color: #07C160;
+}

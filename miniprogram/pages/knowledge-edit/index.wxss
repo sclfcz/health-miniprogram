@@ -1,0 +1,132 @@
+/* 编辑知识页面样式 */
+.container {
+  padding: 30rpx;
+  background: transparent;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 200rpx;
+}
+
+/* 表单区域 */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.form-item {
+  background: var(--card-bg);
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.form-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12rpx;
+  box-sizing: border-box;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12rpx;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+
+.content-area {
+  min-height: 400rpx;
+}
+
+/* 字符计数 */
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 22rpx;
+  color: var(--text-hint);
+  margin-top: 8rpx;
+}
+
+/* 选择器 */
+.form-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80rpx;
+  padding: 0 20rpx;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 12rpx;
+}
+
+.picker-value {
+  font-size: 28rpx;
+  color: var(--text-primary);
+}
+
+.picker-placeholder {
+  font-size: 28rpx;
+  color: var(--text-hint);
+}
+
+.picker-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-right: 4rpx solid var(--text-hint);
+  border-bottom: 4rpx solid var(--text-hint);
+  transform: rotate(45deg);
+}
+
+/* 操作按钮 */
+.btn-group {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap: 20rpx;
+  padding: 30rpx;
+  background: var(--card-bg);
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 44rpx;
+  border: none;
+}
+
+.btn-cancel {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-secondary);
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, #07C160 0%, #10B981 100%);
+  color: #FFFFFF;
+}
+
+.btn-submit:active {
+  opacity: 0.9;
+}

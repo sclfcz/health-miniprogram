@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/home/index",
+    "pages/knowledge/index",
+    "pages/health-add/index",
+    "pages/medication-list/index",
+    "pages/medication-add/index",
+    "pages/medication-detail/index",
+    "pages/health-list/index",
+    "pages/my/index",
+    "pages/family-list/index",
+    "pages/family-edit/index",
+    "pages/knowledge-detail/index",
+    "pages/knowledge-edit/index",
+    "pages/report/index",
+    "pages/analysis/index",
+    "pages/bind-patient/index",
+    "pages/message-center/index",
+    "pages/patient-detail/index",
+    "pages/my-requests/index",
+    "pages/my-patients/index",
+    "pages/select-patient/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "健康日记",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#4CAF50",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/knowledge/index",
+        "text": "健康百科",
+        "iconPath": "images/icons/knowledge.png",
+        "selectedIconPath": "images/icons/knowledge-active.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "images/icons/usercenter.png",
+        "selectedIconPath": "images/icons/usercenter-active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}
